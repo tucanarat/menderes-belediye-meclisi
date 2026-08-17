@@ -109,15 +109,10 @@
     margin-bottom:4px;
     line-height:1;
   }
-  .col .pct{
-    font-size:10.5px;
-    color:var(--muted);
-    margin-bottom:6px;
-    line-height:1;
-  }
   .col .bar{
     width:56px;
     border-radius:6px 6px 0 0;
+    margin-top:4px;
   }
   .col .name{
     margin-top:8px;
@@ -152,25 +147,21 @@
       <div class="chart" id="chart">
         <div class="col" data-party="CHP" data-count="18" data-pct="%58,1" data-color="var(--chp)">
           <span class="count">18</span>
-          <span class="pct">%58,1</span>
           <div class="bar" style="height:100px;background:var(--chp)"></div>
           <span class="name">CHP</span>
         </div>
         <div class="col" data-party="AKP" data-count="10" data-pct="%32,3" data-color="var(--akp)">
           <span class="count">10</span>
-          <span class="pct">%32,3</span>
           <div class="bar" style="height:56px;background:var(--akp)"></div>
           <span class="name">AKP</span>
         </div>
         <div class="col" data-party="Bağımsız" data-count="2" data-pct="%6,5" data-color="var(--bagimsiz)">
           <span class="count">2</span>
-          <span class="pct">%6,5</span>
           <div class="bar" style="height:11px;background:var(--bagimsiz)"></div>
           <span class="name">Bağımsız</span>
         </div>
         <div class="col" data-party="MHP" data-count="1" data-pct="%3,2" data-color="var(--mhp)">
           <span class="count">1</span>
-          <span class="pct">%3,2</span>
           <div class="bar" style="height:6px;background:var(--mhp)"></div>
           <span class="name">MHP</span>
         </div>
@@ -191,12 +182,11 @@
           col.classList.add('active');
           var party = col.getAttribute('data-party');
           var count = col.getAttribute('data-count');
-          var pct = col.getAttribute('data-pct');
           var color = col.getAttribute('data-color');
           infoBox.classList.remove('empty');
           infoBox.innerHTML =
             '<span class="party-name" style="color:' + color + '">' + party + '</span>' +
-            ' — ' + count + ' meclis üyesi (' + pct + ')';
+            ' — ' + count + ' meclis üyesi';
         });
       });
     })();
