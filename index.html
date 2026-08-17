@@ -10,6 +10,7 @@
     --akp:#EFA22B;
     --mhp:#3559C8;
     --bagimsiz:#8A93A3;
+    --yeniparti:#0FA398;
     --ink:#171A21;
     --muted:#8A8F9A;
     --line:#ECEDF1;
@@ -45,7 +46,7 @@
     width:5px;
     height:20px;
     border-radius:3px;
-    background:linear-gradient(180deg,var(--chp),var(--mhp));
+    background:linear-gradient(180deg,var(--chp),var(--yeniparti));
     flex:0 0 auto;
   }
   .title{
@@ -90,7 +91,7 @@
     transition:transform .15s ease;
   }
   .col .bar{
-    width:38px;
+    width:32px;
     max-width:70%;
     border-radius:8px 8px 3px 3px;
     transition:filter .15s ease, transform .15s ease;
@@ -145,7 +146,7 @@
   @media (max-width:400px){
     .card{padding:20px 16px 16px;}
     .chart{gap:8px;height:110px;margin-top:20px;}
-    .col .bar{width:28px;}
+    .col .bar{width:22px;}
     .col .count{font-size:14px;}
     .labels .lbl{font-size:10.5px;}
     .labels{gap:8px;}
@@ -158,36 +159,41 @@
       <span class="accent"></span>
       <p class="title">Menderes Belediye Meclisi Üye Dağılımı</p>
     </div>
-    <p class="subtitle">Toplam 31 üye</p>
+    <p class="subtitle">Toplam 28 üye</p>
 
     <div class="chart" id="chart">
-      <div class="col" data-party="CHP" data-count="18" data-color="var(--chp)">
-        <span class="count">18</span>
-        <div class="bar" style="height:98px;background:var(--chp)"></div>
+      <div class="col" data-party="Yeni Parti" data-count="9" data-color="var(--yeniparti)">
+        <span class="count">9</span>
+        <div class="bar" style="height:86px;background:var(--yeniparti)"></div>
+      </div>
+      <div class="col" data-party="CHP" data-count="6" data-color="var(--chp)">
+        <span class="count">6</span>
+        <div class="bar" style="height:58px;background:var(--chp)"></div>
       </div>
       <div class="col" data-party="AKP" data-count="10" data-color="var(--akp)">
         <span class="count">10</span>
-        <div class="bar" style="height:55px;background:var(--akp)"></div>
-      </div>
-      <div class="col" data-party="Bağımsız" data-count="2" data-color="var(--bagimsiz)">
-        <span class="count">2</span>
-        <div class="bar" style="height:12px;background:var(--bagimsiz)"></div>
+        <div class="bar" style="height:96px;background:var(--akp)"></div>
       </div>
       <div class="col" data-party="MHP" data-count="1" data-color="var(--mhp)">
         <span class="count">1</span>
-        <div class="bar" style="height:6px;background:var(--mhp)"></div>
+        <div class="bar" style="height:10px;background:var(--mhp)"></div>
+      </div>
+      <div class="col" data-party="Bağımsız" data-count="2" data-color="var(--bagimsiz)">
+        <span class="count">2</span>
+        <div class="bar" style="height:19px;background:var(--bagimsiz)"></div>
       </div>
     </div>
     <div class="labels">
+      <span class="lbl">Yeni Parti</span>
       <span class="lbl">CHP</span>
       <span class="lbl">AKP</span>
-      <span class="lbl">Bağımsız</span>
       <span class="lbl">MHP</span>
+      <span class="lbl">Bağımsız</span>
     </div>
 
     <div class="info-box empty" id="infoBox">Bilgi görmek için bir sütuna dokunun</div>
 
-    <p class="foot">Menderes Belediye Meclisi üye dağılımı</p>
+    <p class="foot">Menderes Belediyesi'nde 3 Meclis üyesi tutuklanmıştı.</p>
   </div>
 
   <script>
