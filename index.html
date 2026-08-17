@@ -6,15 +6,15 @@
 <title>Menderes Belediye Meclisi Üye Dağılımı</title>
 <style>
   :root{
-    --chp:#E4032E;
-    --akp:#F5A623;
-    --mhp:#2563EB;
-    --bagimsiz:#6B7280;
-    --ink:#1F2430;
-    --muted:#6B7280;
-    --bg:#FFFFFF;
-    --card:#F8F9FB;
-    --border:#E7E9EE;
+    --chp:#E0233A;
+    --akp:#EFA22B;
+    --mhp:#3559C8;
+    --bagimsiz:#8A93A3;
+    --ink:#171A21;
+    --muted:#8A8F9A;
+    --line:#ECEDF1;
+    --card:#FCFCFD;
+    --card-soft:#F5F6F8;
   }
   *{box-sizing:border-box;}
   html,body{
@@ -23,43 +23,53 @@
     background:transparent;
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     color:var(--ink);
+    overflow-x:hidden;
   }
-  .wrap{
+  .card{
     width:100%;
-    max-width:720px;
+    max-width:600px;
     margin:0 auto;
-    padding:16px 20px 14px;
-    background:var(--bg);
+    background:linear-gradient(180deg,#FFFFFF 0%,var(--card) 100%);
+    border:1px solid var(--line);
+    border-radius:18px;
+    box-shadow:0 1px 2px rgba(20,22,30,.03), 0 6px 20px rgba(20,22,30,.05);
+    padding:26px 26px 20px;
+  }
+  .head{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:2px;
+  }
+  .head .accent{
+    width:5px;
+    height:20px;
+    border-radius:3px;
+    background:linear-gradient(180deg,var(--chp),var(--mhp));
+    flex:0 0 auto;
   }
   .title{
-    font-size:17px;
+    font-size:16.5px;
     font-weight:700;
-    text-align:center;
-    letter-spacing:.2px;
-    margin:0 0 2px;
+    letter-spacing:.1px;
+    margin:0;
+    line-height:1.25;
   }
   .subtitle{
     font-size:12px;
     color:var(--muted);
-    text-align:center;
-    margin:0 0 10px;
-  }
-  .content{
-    display:flex;
-    align-items:flex-end;
-    justify-content:center;
-    gap:0;
-    padding:0 4px;
+    margin:3px 0 0 15px;
+    font-weight:500;
   }
   .chart{
     display:flex;
     align-items:flex-end;
-    justify-content:center;
-    gap:30px;
-    width:100%;
-    max-width:520px;
-    height:140px;
-    padding:0 10px;
+    justify-content:space-between;
+    gap:14px;
+    height:126px;
+    margin:26px 6px 0;
+    padding-bottom:10px;
+    border-bottom:1px solid var(--line);
   }
   .col{
     display:flex;
@@ -67,111 +77,119 @@
     align-items:center;
     justify-content:flex-end;
     height:100%;
-    flex:0 0 auto;
-    width:76px;
+    flex:1 1 0;
     cursor:pointer;
     -webkit-tap-highlight-color:transparent;
   }
+  .col .count{
+    font-size:16px;
+    font-weight:800;
+    line-height:1;
+    margin-bottom:8px;
+    color:var(--ink);
+    transition:transform .15s ease;
+  }
   .col .bar{
-    transition:opacity .15s ease, transform .15s ease;
+    width:38px;
+    max-width:70%;
+    border-radius:8px 8px 3px 3px;
+    transition:filter .15s ease, transform .15s ease;
   }
   .col:hover .bar{
-    opacity:.85;
+    filter:brightness(1.06);
   }
   .col.active .bar{
-    opacity:1;
-    box-shadow:0 0 0 2px var(--ink);
+    transform:scaleX(1.08);
   }
-  .col.active .name{
-    color:inherit;
+  .col.active .count{
+    transform:translateY(-2px);
+  }
+  .labels{
+    display:flex;
+    justify-content:space-between;
+    gap:14px;
+    margin:9px 6px 0;
+  }
+  .labels .lbl{
+    flex:1 1 0;
+    text-align:center;
+    font-size:11.5px;
+    font-weight:600;
+    color:var(--muted);
+    letter-spacing:.1px;
   }
   .info-box{
-    max-width:520px;
-    margin:10px auto 0;
-    padding:8px 16px;
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:10px;
-    font-size:13px;
+    margin:16px 0 0;
+    padding:11px 14px;
+    background:var(--card-soft);
+    border-radius:11px;
+    font-size:12.5px;
     text-align:center;
     color:var(--ink);
-    min-height:18px;
-  }
-  .info-box .party-name{
-    font-weight:800;
+    border-left:3px solid transparent;
+    transition:border-color .15s ease;
   }
   .info-box.empty{
     color:var(--muted);
   }
-  .col .count{
-    font-size:17px;
+  .info-box .party-name{
     font-weight:800;
-    margin-bottom:4px;
-    line-height:1;
-  }
-  .col .bar{
-    width:56px;
-    border-radius:6px 6px 0 0;
-    margin-top:4px;
-  }
-  .col .name{
-    margin-top:8px;
-    font-size:13px;
-    font-weight:700;
-    text-align:center;
-    line-height:1.2;
   }
   .foot{
     text-align:center;
     font-size:10.5px;
     color:var(--muted);
-    margin-top:12px;
-    padding-top:10px;
-    border-top:1px solid var(--border);
+    margin:16px 0 0;
+    line-height:1.4;
   }
-  @media (max-width:420px){
-    .chart{gap:16px;height:120px;}
-    .col{width:62px;}
-    .col .bar{width:44px;}
-    .col .count{font-size:15px;}
-    .col .name{font-size:11.5px;}
+  @media (max-width:400px){
+    .card{padding:20px 16px 16px;}
+    .chart{gap:8px;height:110px;margin-top:20px;}
+    .col .bar{width:28px;}
+    .col .count{font-size:14px;}
+    .labels .lbl{font-size:10.5px;}
+    .labels{gap:8px;}
   }
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <p class="title">Menderes Belediye Meclisi Üye Dağılımı</p>
+  <div class="card">
+    <div class="head">
+      <span class="accent"></span>
+      <p class="title">Menderes Belediye Meclisi Üye Dağılımı</p>
+    </div>
     <p class="subtitle">Toplam 31 üye</p>
 
-    <div class="content">
-      <div class="chart" id="chart">
-        <div class="col" data-party="CHP" data-count="18" data-pct="%58,1" data-color="var(--chp)">
-          <span class="count">18</span>
-          <div class="bar" style="height:100px;background:var(--chp)"></div>
-          <span class="name">CHP</span>
-        </div>
-        <div class="col" data-party="AKP" data-count="10" data-pct="%32,3" data-color="var(--akp)">
-          <span class="count">10</span>
-          <div class="bar" style="height:56px;background:var(--akp)"></div>
-          <span class="name">AKP</span>
-        </div>
-        <div class="col" data-party="Bağımsız" data-count="2" data-pct="%6,5" data-color="var(--bagimsiz)">
-          <span class="count">2</span>
-          <div class="bar" style="height:11px;background:var(--bagimsiz)"></div>
-          <span class="name">Bağımsız</span>
-        </div>
-        <div class="col" data-party="MHP" data-count="1" data-pct="%3,2" data-color="var(--mhp)">
-          <span class="count">1</span>
-          <div class="bar" style="height:6px;background:var(--mhp)"></div>
-          <span class="name">MHP</span>
-        </div>
+    <div class="chart" id="chart">
+      <div class="col" data-party="CHP" data-count="18" data-color="var(--chp)">
+        <span class="count">18</span>
+        <div class="bar" style="height:98px;background:var(--chp)"></div>
+      </div>
+      <div class="col" data-party="AKP" data-count="10" data-color="var(--akp)">
+        <span class="count">10</span>
+        <div class="bar" style="height:55px;background:var(--akp)"></div>
+      </div>
+      <div class="col" data-party="Bağımsız" data-count="2" data-color="var(--bagimsiz)">
+        <span class="count">2</span>
+        <div class="bar" style="height:12px;background:var(--bagimsiz)"></div>
+      </div>
+      <div class="col" data-party="MHP" data-count="1" data-color="var(--mhp)">
+        <span class="count">1</span>
+        <div class="bar" style="height:6px;background:var(--mhp)"></div>
       </div>
     </div>
+    <div class="labels">
+      <span class="lbl">CHP</span>
+      <span class="lbl">AKP</span>
+      <span class="lbl">Bağımsız</span>
+      <span class="lbl">MHP</span>
+    </div>
 
-    <div class="info-box empty" id="infoBox">Bilgi görmek için bir sütuna tıklayın</div>
+    <div class="info-box empty" id="infoBox">Bilgi görmek için bir sütuna dokunun</div>
 
     <p class="foot">Menderes Belediye Meclisi Başkanvekili seçimi haberine ilişkin üye dağılımı</p>
   </div>
+
   <script>
     (function(){
       var cols = document.querySelectorAll('#chart .col');
@@ -184,6 +202,7 @@
           var count = col.getAttribute('data-count');
           var color = col.getAttribute('data-color');
           infoBox.classList.remove('empty');
+          infoBox.style.borderLeftColor = color;
           infoBox.innerHTML =
             '<span class="party-name" style="color:' + color + '">' + party + '</span>' +
             ' — ' + count + ' meclis üyesi';
